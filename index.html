@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>World Clock — Single Page</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>World Clock</h1>
+      <p class="subtitle">Select a timezone to view its current time</p>
+    </header>
+
+    <section class="controls" role="navigation" aria-label="City selector">
+      <button class="city" data-testid="brisbane" data-timezone="Australia/Brisbane">Brisbane</button>
+      <button class="city" data-testid="newyork" data-timezone="America/New_York">New York</button>
+      <button class="city" data-testid="london" data-timezone="Europe/London">London</button>
+      <button class="city" data-testid="kolkata" data-timezone="Asia/Kolkata">Kolkata</button>
+      <button class="city" data-testid="tokyo" data-timezone="Asia/Tokyo">Tokyo</button>
+      <button class="city" data-testid="losangeles" data-timezone="America/Los_Angeles">Los Angeles</button>
+      <button class="city" data-testid="paris" data-timezone="Europe/Paris">Paris</button>
+    </section>
+
+    <!-- Full timezone scroller: populated dynamically by script.js -->
+    <div class="timezone-container">
+      <div id="timezone-bar" class="timezone-bar" role="toolbar" aria-label="All timezones"></div>
+    </div>
+
+    <main class="clock-area">
+      <div class="clock-card">
+        <div class="city-name" id="city-name" data-testid="selected-city">Brisbane</div>
+        <div class="clock" id="clock" data-testid="clock">--:--:--</div>
+        <div class="date" id="date" data-testid="date">---</div>
+      </div>
+    </main>
+
+    <footer class="footer">Built with HTML, CSS &amp; Vanilla JavaScript</footer>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

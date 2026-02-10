@@ -1,0 +1,138 @@
+/* Simple, modern styles for the World Clock SPA */
+:root{
+  /* User provided palette:
+     #213448 (dark navy)
+     #547792 (mid blue)
+     #94B4C1 (light teal)
+     #EAE0CF (cream)
+  */
+  --bg:#EAE0CF;
+  --bg-2:#94B4C1;
+  --card:#ffffff;
+  --muted:#213448;
+  --accent:#213448; /* dark navy */
+  --accent-2:#547792; /* mid blue */
+  --accent-3:#94B4C1; /* light teal */
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  background:linear-gradient(180deg,var(--bg),var(--bg-2));
+  color:var(--muted);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+.app{width:100%;max-width:880px}
+.app-header{ text-align:center; margin-bottom:20px }
+.app-header h1{ margin:0; font-size:28px; letter-spacing:0.2px }
+.subtitle{ margin:6px 0 0; color:var(--muted); font-size:14px }
+
+.controls{
+  display:flex;gap:12px;justify-content:center;margin-bottom:22px;flex-wrap:wrap
+}
+
+/* Horizontal timezone scroller (all available zones) */
+.timezone-container{ display:flex; justify-content:center; margin-bottom:18px }
+.timezone-bar{
+  display:flex;
+  gap:8px;
+  padding:10px 12px;
+  overflow-x:auto;
+  width:100%;
+  border-radius:10px;
+  -webkit-overflow-scrolling:touch;
+}
+.timezone-bar::-webkit-scrollbar{ height:8px }
+.timezone-bar::-webkit-scrollbar-thumb{ background:rgba(33,52,72,0.12); border-radius:8px }
+
+.tz-btn{
+  flex:0 0 auto;
+  padding:8px 10px;
+  border-radius:8px;
+  font-size:13px;
+  background:rgba(255,255,255,0.95);
+  border:1px solid rgba(33,52,72,0.04);
+  color:var(--accent);
+  cursor:pointer;
+  transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.tz-btn:hover{ transform:translateY(-2px); box-shadow:0 8px 18px rgba(33,52,72,0.06) }
+.tz-btn.active{ background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:var(--accent-3) }
+.city{
+  background:var(--card);
+  border:1px solid rgba(33,52,72,0.08);
+  padding:10px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  box-shadow:0 4px 10px rgba(33,52,72,0.05);
+  transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
+  font-weight:600;
+  color:var(--accent);
+}
+.city:hover{ transform:translateY(-3px); box-shadow:0 8px 20px rgba(33,52,72,0.08) }
+.city:focus{ outline:2px solid rgba(84,119,146,0.18); outline-offset:2px }
+
+/* Active/highlighted city */
+.city.active{
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  color:var(--accent-3);
+  border-color:transparent;
+  box-shadow:0 12px 30px rgba(33,52,72,0.14);
+}
+
+.clock-area{ display:flex; justify-content:center }
+.clock-card{
+  position:relative;
+  background:linear-gradient(180deg, rgba(255,255,255,0.95), var(--card));
+  border-radius:18px;
+  padding:36px 42px;
+  text-align:center;
+  min-width:360px;
+  box-shadow:0 18px 40px rgba(33,52,72,0.08);
+  border: 1px solid rgba(33,52,72,0.04);
+  overflow:visible;
+}
+.city-name{ font-size:18px; color:var(--accent); margin-bottom:8px }
+.clock{
+  font-size:72px;
+  font-weight:800;
+  letter-spacing:3px;
+  color:#fff;
+  display:inline-block;
+  padding:18px 28px;
+  border-radius:14px;
+  background:linear-gradient(90deg, rgba(33,52,72,0.95), rgba(84,119,146,0.95));
+  box-shadow:0 12px 30px rgba(33,52,72,0.25), 0 4px 8px rgba(148,180,193,0.08) inset;
+  text-shadow:0 2px 8px rgba(0,0,0,0.25);
+  transition:transform .25s ease;
+}
+.clock:hover{ transform:scale(1.02) }
+.date{ margin-top:12px; color:var(--muted); font-weight:600 }
+
+/* subtle animated halo behind the clock */
+.clock-card::before{
+  content:'';
+  position:absolute;
+  left:50%;
+  top:32px;
+  transform:translateX(-50%);
+  width:360px;
+  height:360px;
+  background:radial-gradient(circle at 30% 20%, rgba(148,180,193,0.12), rgba(84,119,146,0.06) 30%, transparent 60%);
+  filter:blur(28px);
+  z-index:0;
+}
+.clock, .city-name, .date{ position:relative; z-index:1 }
+
+.footer{ text-align:center; margin-top:18px; color:var(--muted); font-size:13px }
+
+/* Responsive */
+@media (max-width:420px){
+  .clock{ font-size:44px }
+  .clock-card{ padding:20px }
+  .city{ padding:8px 10px }
+}
